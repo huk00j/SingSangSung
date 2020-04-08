@@ -18,7 +18,7 @@ public class Smain {
 		while(true) {
 			System.out.println("accept 대기중~");
 			socket = server.accept();
-			Schat sc = new Schat(socket);
+			Scenter sc = new Scenter(socket);
 		}
 	}
 

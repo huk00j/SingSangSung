@@ -1,5 +1,6 @@
 package TCP;
 
+
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -10,7 +11,7 @@ public class Cmain {
 		// TODO Auto-generated method stub
 
 		Socket socket = new Socket("10.0.0.120", 9999);
-		new Cchat(socket);
+		new Ccenter(socket);
 		
 	}
 

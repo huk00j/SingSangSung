@@ -22,9 +22,9 @@ public class SongDAO {
 	private void start() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver"); // 클래스 불러오라.
-			System.out.println("클래스 로드 성공");
+			System.out.println("Song 클래스 로드 성공");
 		} catch (ClassNotFoundException e) {
-			System.out.println("클래스 로드 실패");
+			System.out.println("Song 클래스 로드 실패");
 		}
 	}
 

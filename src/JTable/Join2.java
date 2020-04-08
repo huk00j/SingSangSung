@@ -16,6 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import DB.DTO;
 import DB.LoginDAO;
+import TCP.Ccenter;
+
 import javax.swing.ImageIcon;
 
 public class Join2 extends JFrame {
@@ -35,13 +37,18 @@ public class Join2 extends JFrame {
 	JLabel lblNewLabel_7, lblNewLabel_8, lblNewLabel_9, lblNewLabel_10;
 	JLabel lblNewLabel_11;
 
+	
+	Ccenter cc = null;
 	/**
 	 * Create the frame.
+	 * @param cc2 
+	 * @param cc 
 	 * 
 	 * @return
 	 */
-	Join2() {
-
+	Join2(Ccenter cc) {
+		this.cc = cc;
+		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 
@@ -60,7 +67,7 @@ public class Join2 extends JFrame {
 		lblNewLabel_1.setBounds(25, 100, 30, 30);
 		contentPane.add(lblNewLabel_1);
 
-		txtAsdfdsfd = new JTextField();
+		txtAsdfdsfd = new JTextField();			// 아이디 중복 확인 txtfd.
 		txtAsdfdsfd.setBounds(60, 40, 110, 25);
 		contentPane.add(txtAsdfdsfd);
 		txtAsdfdsfd.setColumns(10);
@@ -171,6 +178,14 @@ public class Join2 extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				String idcc = "계정중복확인/";
+				String idccc = txtAsdfdsfd.getText();
+				cc.send(idcc+idccc);
+				
+				//------------------------------------------------------
+				
+				
 				String in = txtAsdfdsfd.getText();
 
 				if (txtAsdfdsfd.getText().equals("")) {
@@ -288,13 +303,13 @@ public class Join2 extends JFrame {
 		});
 	}
 
-	public void ins() {
-		if (cheId == 5 && chePw == 5 && k == 2 && qq == 5) {
-			insert();
-		} else {
-			System.out.println("아이디, 패스워드 체크");
-		}
-	}
+//	public void ins() {
+//		if (cheId == 5 && chePw == 5 && k == 2 && qq == 5) {
+//			insert();
+//		} else {
+//			System.out.println("아이디, 패스워드 체크");
+//		}
+//	}
 
 	public void insert() {
 		btnNewButton_1.addActionListener(new ActionListener() {
