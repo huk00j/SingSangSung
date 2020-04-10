@@ -15,12 +15,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import DB.SongDAO;
-import TCP.Ccenter;
+import TCP.ClientC;
 
 public class Table2 extends JFrame {
 
 	String header[] = { "No", "곡명", "가수명", "장르", "앨범" };
-	DefaultTableModel tableModel = new DefaultTableModel(null, header);
+	public DefaultTableModel tableModel = new DefaultTableModel(null, header);
 	JTable table = new JTable(tableModel);
 	JScrollPane tableScroll = new JScrollPane(table);
 
@@ -33,10 +33,9 @@ public class Table2 extends JFrame {
 	private final JButton btnNewButton = new JButton("로그인");
 	private final JButton btnNewButton_1 = new JButton("회원가입");
 
-	SongDAO dao = new SongDAO();
-	Ccenter cc = null;
+//	SongDAO dao = new SongDAO();
+	ClientC Cc = null;
 	
-	String joinqq;
 
 	/**
 	 * Launch the application.
@@ -58,8 +57,8 @@ public class Table2 extends JFrame {
 	 * Create the frame.
 	 * @param ccenter 
 	 */
-	public Table2(Ccenter ccenter) {
-		this.cc = ccenter;
+	public Table2(ClientC ccenter) {
+		this.Cc = ccenter;
 		
 				
 		table();
@@ -69,7 +68,7 @@ public class Table2 extends JFrame {
 		textField.setBounds(89, 31, 116, 28);
 		textField.setColumns(10);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 750, 600);
+		setBounds(50, 200, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -104,11 +103,6 @@ public class Table2 extends JFrame {
 		joinQ();
 	}
 
-	public void joinQQ(String jjj) {
-		if(jjj.equals("회원가입수락")) {
-		 new Join2(cc);
-		}
-	}
 	
 	public void joinQ() { // 회원 가입
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -116,18 +110,23 @@ public class Table2 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String jj = "회원가입신청";
-				cc.send(jj);
+				Cc.send(jj);
 				
 			}
 		});
 	}
 
 	public void table() {
-		ArrayList<String[]> tList = new ArrayList<>();
-		tList = dao.tableList();
-		for (int i = 0; i < tList.size(); i++) {
-			tableModel.addRow(tList.get(i));
-		}
+		String songlist = "노래목록불러오기";
+		Cc.send(songlist);
+		
+	//-------------------------------------------------
+		
+//		ArrayList<String[]> tList = new ArrayList<>();
+//		tList = dao.tableList();
+//		for (int i = 0; i < tList.size(); i++) {
+//			tableModel.addRow(tList.get(i));
+//		} 
 
 	}
 

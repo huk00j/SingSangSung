@@ -1,6 +1,8 @@
 package DB;
 
-public class DTO {
+import java.io.Serializable;
+
+public class DTO implements Serializable {
 
 	String no;
 	String title;
@@ -43,6 +45,7 @@ public class DTO {
 		this.album = album;
 	}
 	
+	//-------------------------------------
 	
 	public String getId() {
 		return id;
@@ -57,6 +60,7 @@ public class DTO {
 		this.pw = pw;
 	}
 	
+	//-------------------------------------
 	
 	public String[] saveSong() {
 		String turnData[] = new String[5];

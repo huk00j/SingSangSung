@@ -16,7 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import DB.DTO;
 import DB.LoginDAO;
-import TCP.Ccenter;
+import TCP.ClientC;
+import TCP.ServerC;
 
 import javax.swing.ImageIcon;
 
@@ -29,7 +30,7 @@ public class Join2 extends JFrame {
 
 	private JPanel contentPane;
 
-	JLabel lblNewLabel_2, lblNewLabel_3, lblNewLabel_4;
+	public JLabel lblNewLabel_2, lblNewLabel_3, lblNewLabel_4;
 	JTextField textField_1, textField_2;
 	JLabel lblNewLabel_5, lblNewLabel_6;
 	JButton btnNewButton_1;
@@ -38,22 +39,24 @@ public class Join2 extends JFrame {
 	JLabel lblNewLabel_11;
 
 	
-	Ccenter cc = null;
+	ClientC Cc = null;
+//	ServerC sc = null;	// 굳이 서버를 알 필요 x.
+	
 	/**
 	 * Create the frame.
 	 * @param cc2 
-	 * @param cc 
+	 * @param scenter 
 	 * 
 	 * @return
 	 */
-	Join2(Ccenter cc) {
-		this.cc = cc;
+	public Join2(ClientC cc) {
+		this.Cc = cc;
 		
-		this.setVisible(true);
-		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+//		this.setVisible(true);
+//		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 200, 300, 350);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(800, 200, 300, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,6 +93,8 @@ public class Join2 extends JFrame {
 		btnNewButton_1.setBounds(100, 220, 100, 60);
 		contentPane.add(btnNewButton_1);
 
+		this.setVisible(true);
+		
 		checkA();
 
 		ActionID();
@@ -100,7 +105,6 @@ public class Join2 extends JFrame {
 //		ins();
 	}
 
-//	String id = "";
 	public void checkA() {
 		lblNewLabel_2 = new JLabel("이미 존재하는 계정입니다.");
 		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 12));
@@ -173,7 +177,7 @@ public class Join2 extends JFrame {
 
 	
 	int qq = 0 ;
-	public void ActionID() {
+	public void ActionID() {	//--------------------------------------- 계정 중복 체크용.
 		btnNewButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -181,7 +185,7 @@ public class Join2 extends JFrame {
 				
 				String idcc = "계정중복확인/";
 				String idccc = txtAsdfdsfd.getText();
-				cc.send(idcc+idccc);
+				Cc.send(idcc+idccc);
 				
 				//------------------------------------------------------
 				
@@ -230,7 +234,7 @@ public class Join2 extends JFrame {
 			public void keyTyped(KeyEvent e) {
 			}
 
-			@Override
+			@Override	// 키보드 떼자마자.
 			public void keyReleased(KeyEvent e) {
 				if (textField_1.getText().length() < 4) {
 					System.out.println("4자 이상이어야 합니다.");

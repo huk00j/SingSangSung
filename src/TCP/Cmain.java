@@ -11,7 +11,7 @@ public class Cmain {
 		// TODO Auto-generated method stub
 
 		Socket socket = new Socket("10.0.0.120", 9999);
-		new Ccenter(socket);
+		new ClientC(socket);
 		
 	}
 
